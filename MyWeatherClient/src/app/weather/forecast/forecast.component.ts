@@ -3,6 +3,7 @@ import { ICondition } from '../condition';
 import { ConditionsService } from '../conditions.service';
 import { LocationService } from 'src/app/location/location.service';
 import { ILocation } from 'src/app/location/location';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-forecast',
@@ -15,7 +16,7 @@ export class ForecastComponent implements OnInit {
   errorMessage: string;
   currentLocation:ILocation;
 
-  constructor(private conditionService: ConditionsService, private locationService: LocationService) { }
+  constructor(private conditionService: ConditionsService, private locationService: LocationService, private router:Router) { }
 
   ngOnInit() {
     this.locationService.getCurrentLocation().subscribe(
@@ -26,10 +27,16 @@ export class ForecastComponent implements OnInit {
           (data:ICondition) => {
             this.condition = JSON.parse(data.toString());              
           },
-          error => this.errorMessage= <any> error
-        );
-      },
-      error => this.errorMessage= <any> error
+          error => {
+            this.errorMessage='Oops..Weather API is not responding. Try again later.';
+            this.router.navigate(['/error/'+ this.errorMessage]);
+        }
+      );
+    },
+    error => {
+              this.errorMessage='Oops..Location API is not responding. Try again later.';              
+              this.router.navigate(['/error/' + this.errorMessage]);
+            }
     )        
   }
 

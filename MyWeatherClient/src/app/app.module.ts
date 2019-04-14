@@ -9,13 +9,15 @@ import { ForecastComponent } from './weather/forecast/forecast.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
 import { CookieService } from 'ngx-cookie-service';
+import { ErrorComponent } from './error/error.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     CurrentComponent,
     MeasureComponent,
-    ForecastComponent
+    ForecastComponent,
+    ErrorComponent
   ],
   imports: [
     BrowserModule,
@@ -23,6 +25,7 @@ import { CookieService } from 'ngx-cookie-service';
     RouterModule.forRoot([
       {path:'current',component:CurrentComponent},
       {path:'forecast',component:ForecastComponent},
+      {path:'error/:errorMessage',component:ErrorComponent},
       {path:'',redirectTo:'current',pathMatch:'full'},
       {path:'**',redirectTo:'current',pathMatch:'full'}
     ]),
