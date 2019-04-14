@@ -1,0 +1,4 @@
+<div class="btn-group btn-group-toggle" data-toggle="buttons">
+    <button class="btn btn-secondary" [ngClass]="celsius ? 'active' : ''" (click)="toggleMeasure('C')">C</button>
+    <button class="btn btn-secondary" [ngClass]="farenhait ? 'active' : ''" (click)="toggleMeasure('F')">F</button>            
+</div>

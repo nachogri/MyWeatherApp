@@ -1,0 +1,33 @@
+<div *ngIf="condition">
+    <div class="container px-3 py-3 pt-md-5 pb-md-4">
+          <div class="row">
+            <div class="col-auto mr-auto"><h1 class="display-4">{{condition.location}}</h1></div>
+            <div class="col-auto"><app-measure (measureChange)='onMeasureChange($event)'></app-measure></div>
+          </div>
+    </div>  
+    <div class="container">
+        <div class="card-deck mb-5 text-center">
+          <div class="card mb-1 shadow-sm" *ngFor='let forecast of condition.forecast'>
+            <div class="card-header">
+                <div class="container">              
+                    <div class="row">
+                          <h5 class="my-0 font-weight-normal text-left">{{forecast.date | date }}</h5>                                     
+                    </div>
+                </div>                                   
+            </div>
+            <div class="card-body">
+              <h1 class="card-title pricing-card-title"><img [src]='forecast.conditions.icon'/></h1>
+              <ul class="list-unstyled mt-3 mb-4">
+                  <li *ngIf = "measure =='C'"  class="text-muted">{{forecast.minTemperatureCelsious}} °{{measure}} - {{forecast.maxTemperatureCelsious}} °{{measure}}</li>
+                  <li *ngIf = "measure =='F'" class="text-muted">{{forecast.minTemperatureFahrenheit}} °{{measure}} - {{forecast.maxTemperatureFahrenheit}} °{{measure}}</li>
+                <li class="text-muted">{{forecast.conditions.text}}</li>                
+              </ul>
+              <ul class="list-unstyled mt-3 mb-4">
+                 <li class="text-muted">Precip.: {{forecast.totalPrecipitationMm}} Mm</li>                
+                <li class="text-muted">Wind: {{forecast.maxWindKph}} Kph</li>                
+              </ul>
+            </div>                                     
+          </div>        
+        </div>  
+    </div>
+</div>

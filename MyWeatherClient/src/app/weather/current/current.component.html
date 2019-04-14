@@ -1,0 +1,39 @@
+<div *ngIf="condition">
+  <div class="container px-3 py-3 pt-md-5 pb-md-4">
+        <div class="row">
+          <div class="col-auto mr-auto"><h1 class="display-4">{{condition.location}}</h1></div>
+          <div class="col-auto"><app-measure (measureChange)='onMeasureChange($event)'></app-measure></div>
+        </div>
+  </div>
+  <div class="container">
+    <div class="card-deck mb-1 text-center">
+      <div class="card mb-1 shadow-sm">
+        <div class="card-header">
+            <div class="container">              
+                <div class="row">
+                  <div class="col">
+                      <h4 class="my-0 font-weight-normal text-left">{{condition.current.date | date }}</h4>
+                  </div>
+                </div>
+            </div>                                   
+        </div>
+        <div class="card-body">
+          <h1 class="card-title pricing-card-title"><img [src]='condition.current.conditions.icon'/> 
+            <small *ngIf = "measure =='C'"  class="text-muted">{{condition.current.temperatureCelsious}} °{{measure}}</small>
+            <small *ngIf = "measure =='F'" class="text-muted">{{condition.current.temperatureFahrenheit}} °{{measure}}</small></h1>
+          <ul class="list-unstyled mt-3 mb-4">
+            <li>{{condition.current.conditions.text}}</li>          
+          </ul>
+        </div>      
+        <div class="card-body text-left">
+            <h6>Details</h6>
+            <ul class="list-unstyled mt-3 mb-4">
+              <li>Humedity: {{condition.current.humidity}}</li>
+              <li>Wind: {{condition.current.windKph}} Kph {{condition.current.windDir}}</li>
+              <li>Precipitation: {{condition.current.precipitationMm}}</li>          
+            </ul>
+          </div>                   
+      </div>        
+    </div>  
+  </div>
+</div>

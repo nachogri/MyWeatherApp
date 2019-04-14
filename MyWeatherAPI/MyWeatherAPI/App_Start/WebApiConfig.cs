@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Web.Http;
+using System.Web.Http.Cors;
 
 namespace MyWeatherAPI
 {
@@ -19,6 +20,9 @@ namespace MyWeatherAPI
                 routeTemplate: "api/{controller}/{id}",
                 defaults: new { id = RouteParameter.Optional }
             );
+            
+            EnableCorsAttribute Cors = new EnableCorsAttribute("*", "*", "*");
+            config.EnableCors(Cors);
         }
     }
 }
