@@ -1,0 +1,20 @@
+{
+    "ip": "190.188.111.173",
+    "city": "Buenos Aires",
+    "region": "Buenos Aires F.D.",
+    "region_code": "C",
+    "country": "AR",
+    "country_name": "Argentina",
+    "continent_code": "SA",
+    "in_eu": false,
+    "postal": "1871",
+    "latitude": -34.6021,
+    "longitude": -58.3845,
+    "timezone": "America/Argentina/Buenos_Aires",
+    "utc_offset": "-0300",
+    "country_calling_code": "+54",
+    "currency": "ARS",
+    "languages": "es-AR,en,it,de,fr,gn",
+    "asn": "AS10481",
+    "org": "Prima S.A."
+}

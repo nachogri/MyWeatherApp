@@ -2,6 +2,7 @@ import { Component, OnInit } from '@angular/core';
 import { ConditionsService } from '../conditions.service';
 import { ICondition } from '../condition';
 import { LocationService } from 'src/app/location/location.service';
+import { ILocation } from 'src/app/location/location';
 
 @Component({
   selector: 'app-current',
@@ -9,28 +10,28 @@ import { LocationService } from 'src/app/location/location.service';
   styleUrls: ['./current.component.css']
 })
 export class CurrentComponent implements OnInit {  
-  measure:string='C';
+  measure:string;
   condition: ICondition;
   errorMessage:string;
-  currentLocation:any;
+  currentLocation:ILocation;
  
   constructor(private conditionService: ConditionsService, private locationService: LocationService) { }
 
-  ngOnInit() {
-      this.locationService.getCurrentLocation()
-      .subscribe(
-        data => this.currentLocation = data,
-        error => this.errorMessage= <any> error
-      )
+  ngOnInit() {        
+    this.locationService.getCurrentLocation().subscribe(
+      (data:ILocation) => {
+        this.currentLocation=data;
         
-      this.conditionService.getConditions()          
-          .subscribe(       
-            (data:ICondition) => {
-              this.condition = JSON.parse(data.toString());                            
-            },
-            error => this.errorMessage= <any> error            
-      );      
-    }  
+        this.conditionService.getConditions(this.currentLocation.city).subscribe(
+          (data:ICondition) => {
+            this.condition = JSON.parse(data.toString());              
+          },
+          error => this.errorMessage= <any> error
+        );
+      },
+      error => this.errorMessage= <any> error
+    )        
+  } 
     
 
   onMeasureChange(measure: string):void{

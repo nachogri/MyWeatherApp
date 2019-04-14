@@ -8,10 +8,13 @@ import { tap,catchError } from 'rxjs/operators';
   providedIn: 'root'
 })
 export class ConditionsService {
-    private currentLocation='Paris';
-    private myWeatherApiUrl='http://localhost:49169/api/conditions?location=' + this.currentLocation + '&days=5' ;    
+    private currentLocation:string;    
+    private myWeatherApiUrl:string;      
 
-  getConditions():Observable<ICondition> {    
+  getConditions(currentLocation:string):Observable<ICondition> {       
+    this.currentLocation=currentLocation;
+    this.myWeatherApiUrl='http://localhost:49169/api/conditions?location=' + this.currentLocation + '&days=5' ;      
+
    return this.http.get<ICondition>(this.myWeatherApiUrl).pipe(      
       tap(data=> console.log('All:' + data)),
       catchError(this.handleError));

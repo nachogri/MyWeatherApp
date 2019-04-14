@@ -1,14 +1,18 @@
 import { Injectable } from '@angular/core';
-import { Observable, throwError } from 'rxjs';
 import { HttpClient, HttpErrorResponse } from '@angular/common/http';
+import { Observable, throwError } from 'rxjs';
 import { tap , catchError} from 'rxjs/operators';
 
 @Injectable({
   providedIn: 'root'
 })
 export class LocationService {  
+  //private url:string="api/location.json";
+  private url:string="https://ipapi.co/json";  
+
   getCurrentLocation(): Observable<any> {
-        return this.http.get('http://ipinfo.io').pipe(      
+        
+        return this.http.get(this.url).pipe(      
           tap(data=> console.log('All:' + data)),
           catchError(this.handleError));
   }

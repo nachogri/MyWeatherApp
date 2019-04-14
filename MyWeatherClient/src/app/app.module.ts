@@ -8,6 +8,7 @@ import { MeasureComponent } from './shared/measure/measure.component';
 import { ForecastComponent } from './weather/forecast/forecast.component';
 import { RouterModule } from '@angular/router';
 import { HttpClientModule } from '@angular/common/http';
+import { CookieService } from 'ngx-cookie-service';
 
 @NgModule({
   declarations: [
@@ -26,7 +27,7 @@ import { HttpClientModule } from '@angular/common/http';
       {path:'**',redirectTo:'current',pathMatch:'full'}
     ]),
     HttpClientModule],
-  providers: [],
+  providers: [CookieService],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

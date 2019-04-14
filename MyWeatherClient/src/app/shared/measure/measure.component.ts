@@ -1,4 +1,5 @@
 import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-measure',
@@ -6,7 +7,8 @@ import { Component, OnInit, Output, EventEmitter } from '@angular/core';
   styleUrls: ['./measure.component.css']
 })
 export class MeasureComponent implements OnInit {
-  private _celsius: boolean = true;
+  private measure:string;
+  private _celsius: boolean ;
   public get celsius(): boolean {
     return this._celsius;
   }
@@ -14,7 +16,7 @@ export class MeasureComponent implements OnInit {
     this._celsius = value;
   }
 
-  private _farenhait: boolean = false;
+  private _farenhait: boolean ;
   public get farenhait(): boolean {
     return this._farenhait;
   }
@@ -35,12 +37,18 @@ export class MeasureComponent implements OnInit {
       this.celsius=false;
       this.farenhait=true;      
     }        
-    this.measureChange.emit(measure);
+    this.measureChange.emit(measure);    
+    this.cookieService.set('MyWeatherClient-DefaultMeasure',measure);
   }
 
-  constructor() { }
+  constructor(private cookieService: CookieService) { }
 
   ngOnInit() {
+    this.measure=this.cookieService.get('MyWeatherClient-DefaultMeasure');      
+    if (!this.measure)
+      this.measure='C';
+      
+    this.toggleMeasure(this.measure);
   }
 
 }

@@ -1,5 +1,4 @@
 import { async, ComponentFixture, TestBed } from '@angular/core/testing';
-
 import { MeasureComponent } from './measure.component';
 
 describe('MeasureComponent', () => {
