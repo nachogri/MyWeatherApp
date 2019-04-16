@@ -16,6 +16,6 @@ Services:
 - WeatherService: For providing weather data coming from BackEnd
 - LocationService: For providing location data coming from 3rd party API
 
-The BackEnd is a C# WebAPI that exposes a Conditions Resource and a Get method with location and forcast days number as required paremeters.
+The BackEnd is a C# WebAPI that exposes a Conditions Resource and a Get method with location and forcast days number as required paremeters. This API can be consumed through the following endpoint: https://myweatherapi.azurewebsites.net/api/conditions?location=[desired location]&days=[desired number of days]
 
 This API consumes weather data from 3rd party API and exposes it to be consumed by the FrontEnd 
