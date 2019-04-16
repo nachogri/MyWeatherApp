@@ -7,8 +7,8 @@ import { tap , catchError} from 'rxjs/operators';
   providedIn: 'root'
 })
 export class LocationService {  
-  private url:string="api/location.json";
-  //private url:string="https://ipapi.co/json";  
+  //private url:string="api/location.json";
+  private url:string="https://ipapi.co/json";  
 
   getCurrentLocation(): Observable<any> {
         

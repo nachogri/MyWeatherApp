@@ -13,8 +13,9 @@ export class ConditionsService {
 
   getConditions(currentLocation:string):Observable<ICondition> {       
     this.currentLocation=currentLocation;
-    this.myWeatherApiUrl='http://localhost:49169/api/conditions?location=' + this.currentLocation + '&days=5' ;      
-
+    //this.myWeatherApiUrl='http://localhost:49169/api/conditions?location=' + this.currentLocation + '&days=5' ;      
+    this.myWeatherApiUrl='https://myweatherapi.azurewebsites.net/api/conditions?location=' + this.currentLocation + '&days=5' ;
+    
    return this.http.get<ICondition>(this.myWeatherApiUrl).pipe(      
       tap(data=> console.log('All:' + data)),
       catchError(this.handleError));

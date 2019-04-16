@@ -18,7 +18,9 @@ namespace MyWeatherAPI.Repositories
                 conditions = new ConditionDetails() {
                     text = weather.current.condition.text,
                     icon = weather.current.condition.icon
-                }                
+                },
+                humidity = weather.current.humidity,
+                precipitationMm=weather.current.precip_mm
             };                        
 
             //Forecast
@@ -38,7 +40,7 @@ namespace MyWeatherAPI.Repositories
                         text = weatherForecastDay.day.condition.text,
                         icon = weatherForecastDay.day.condition.icon
                     },                    
-                    totalPrecipitationMm = weatherForecastDay.day.totalprecip_mm
+                    totalPrecipitationMm = weatherForecastDay.day.totalprecip_mm                    
                 });
             }            
 
